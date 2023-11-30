@@ -1,24 +1,24 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 
-// import { INavLink } from "@/types";
-// import { sidebarLinks } from "@/constants";
-// import { Loader } from "@/components/shared";
+import { INavLink } from "@/types";
+import { sidebarLinks } from "@/constants";
 import { Button } from "@/components/ui/button";
-// import { useSignOutAccount } from "@/lib/react-query/queries";
+import { useSignOutAccount } from "@/lib/react-query/queriesAndMutations";
 import { useUserContext, INITIAL_USER } from "@/context/AuthContext";
+import Loader from "./Loader";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
-//   const { pathname } = useLocation();
+  const { pathname } = useLocation();
   const { user, setUser, setIsAuthenticated, isLoading } = useUserContext();
 
-//   const { mutate: signOut } = useSignOutAccount();
+  const { mutate: signOut } = useSignOutAccount();
 
   const handleSignOut = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-//     signOut();
+    signOut();
     setIsAuthenticated(false);
     setUser(INITIAL_USER);
     navigate("/sign-in");
@@ -38,7 +38,7 @@ const LeftSidebar = () => {
 
         {isLoading || !user.email ? (
           <div className="h-14">
-            {/* <Loader /> */}
+            <Loader />
           </div>
         ) : (
           <Link to={`/profile/${user.id}`} className="flex gap-3 items-center">
@@ -55,7 +55,7 @@ const LeftSidebar = () => {
         )}
 
         <ul className="flex flex-col gap-6">
-          {/* {sidebarLinks.map((link: INavLink) => {
+          {sidebarLinks.map((link: INavLink) => {
             const isActive = pathname === link.route;
 
             return (
@@ -78,7 +78,7 @@ const LeftSidebar = () => {
                 </NavLink>
               </li>
             );
-          })} */}
+          })}
         </ul>
       </div>
 

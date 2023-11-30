@@ -1,13 +1,13 @@
-// import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-// import { bottombarLinks } from "@/constants";
+import { bottombarLinks } from "@/constants";
 
 const Bottombar = () => {
-//   const { pathname } = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <section className="bottom-bar">
-      {/* {bottombarLinks.map((link) => {
+      {bottombarLinks.map((link) => {
         const isActive = pathname === link.route;
         return (
           <Link
@@ -27,7 +27,7 @@ const Bottombar = () => {
             <p className="tiny-medium text-light-2">{link.label}</p>
           </Link>
         );
-      })} */}
+      })}
     </section>
   );
 };

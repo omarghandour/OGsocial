@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   useQuery,
   useMutation,
@@ -58,6 +59,7 @@ export const useSignOutAccount = () => {
 export const useGetPosts = () => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
+    
     queryFn: getInfinitePosts as any,
     getNextPageParam: (lastPage: any) => {
       // If there's no data, there are no more pages.

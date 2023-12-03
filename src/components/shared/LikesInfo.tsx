@@ -1,5 +1,4 @@
 import { Models } from 'appwrite';
-import './shared.css'
 
 type PostStatsProps = {
           so: Models.Document;

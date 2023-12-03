@@ -35,7 +35,8 @@ const PostCard = ({ post }: PostCardProps) => {
             </p>
             <div className="flex-center gap-2 text-light-3">
               <p className="subtle-semibold lg:small-regular ">
-                {multiFormatDateString(post.$createdAt)}
+              {multiFormatDateString(post?.$createdAt)}
+              {/* {post?.$updatedAt !== post?.$createdAt ? `updated ${multiFormatDateString(post?.$updatedAt)}` : multiFormatDateString(post?.$createdAt)} */}
               </p>
               •
               <p className="subtle-semibold lg:small-regular">

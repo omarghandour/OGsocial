@@ -43,7 +43,7 @@ const Explore = () => {
       <div className="flex-center w-full h-full">
         <Loader />
       </div>
-    );
+    )
 
   const shouldShowSearchResults = searchValue !== "";
   const shouldShowPosts = !shouldShowSearchResults && 

@@ -361,6 +361,8 @@ export async function likePost(postId: string, likesArray: string[]) {
       {
         likes: likesArray,
       }
+      
+      
     );
 
     if (!updatedPost) throw Error;

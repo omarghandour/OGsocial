@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { Loader } from "@/components/shared";
 import { GridPostList, PostStats } from "@/components/shared";
+// import { useGetCurrentUser } from "@/lib/react-query/queriesAndMutations";
 
 import {
   useGetPostById,
@@ -18,6 +19,13 @@ const PostDetails = () => {
   const { user } = useUserContext();
 
   const { data: post, isLoading } = useGetPostById(id);
+  // const { data: currentUser } = useGetCurrentUser();
+// console.log(currentUser);
+
+  console.log(post);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  
+  
   const { data: userPosts, isLoading: isUserPostLoading } = useGetUserPosts(
     post?.creator.$id
   );
@@ -78,6 +86,7 @@ const PostDetails = () => {
                   </p>
                   <div className="flex-center gap-2 text-light-3">
                     <p className="subtle-semibold lg:small-regular ">
+                      {/* {post?.$updatedAt ? multiFormatDateString(post?.$updatedAt) : multiFormatDateString(post?.$createdAt)} */}
                       {multiFormatDateString(post?.$createdAt)}
                     </p>
                     •
@@ -128,9 +137,12 @@ const PostDetails = () => {
                     #{tag}
                   </li>
                 ))}
+                
               </ul>
+             
+              
             </div>
-
+                
             <div className="w-full">
               <PostStats post={post} userId={user.id} />
             </div>

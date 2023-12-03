@@ -9,6 +9,7 @@ import {
   useDeleteSavedPost,
   useGetCurrentUser,
 } from "@/lib/react-query/queriesAndMutations";
+import LikesInfo from "./LikesInfo";
 
 type PostStatsProps = {
   post: Models.Document;
@@ -31,6 +32,13 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const savedPostRecord = currentUser?.save.find(
     (record: Models.Document) => record.post.$id === post.$id
   );
+const tree = post?.likes
+
+
+const [Lik, setLik] = useState(false);
+const likesUsers = () => {
+  setLik(!Lik);
+}
 
   useEffect(() => {
     setIsSaved(!!savedPostRecord);
@@ -87,9 +95,10 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
           onClick={(e) => handleLikePost(e)}
           className="cursor-pointer"
         />
-        <p className="small-medium lg:base-medium">{likes.length}</p>
+        <p onClick={likesUsers} className="small-medium lg:base-medium cursor-pointer">{likes.length}</p>
+        
       </div>
-
+      {Lik ? <div className="relative"><LikesInfo so={tree} userId={""}/></div> : null }
       <div className="flex gap-2">
         <img
           src={isSaved ? "/assets/icons/saved.svg" : "/assets/icons/save.svg"}
